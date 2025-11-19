@@ -7,9 +7,9 @@ public partial class Notification
 {
     public long Id { get; set; }
 
-    public long UserId { get; set; }
+    public string UserId { get; set; }
 
-    public long SenderId { get; set; }
+    public string SenderId { get; set; }
 
     public string Type { get; set; } = null!;
 

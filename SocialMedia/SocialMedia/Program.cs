@@ -1,3 +1,6 @@
+using Application.Interfaces;
+using Infrastructure.Presistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace SocialMedia
 {
@@ -8,12 +11,12 @@ namespace SocialMedia
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            builder.Services.AddDbContext<SocialMediaContext>
+            (options => options.UseSqlServer(builder.Configuration.GetConnectionString("constr")));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
