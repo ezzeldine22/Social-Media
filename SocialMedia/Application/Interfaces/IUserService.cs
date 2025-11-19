@@ -1,4 +1,4 @@
-﻿using Application.DTOs;
+﻿using Application.DTOs.UserDTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,6 @@ namespace Application.Interfaces
 {
     public interface IUserService
     {
-        //public Task<GetUserProfileDTO> GetUserProfile(string id);
+        public Task<GetUserProfileDTO> GetUserProfile(string id);
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.DTOs
+namespace Application.DTOs.UserDTOs
 {
     public class GetUserProfileDTO
     {
@@ -13,8 +13,6 @@ namespace Application.DTOs
         public string Email { get; set; } = null!;
 
         public string? Phone { get; set; }
-
-        public string Password { get; set; } = null!;
 
         public string? Bio { get; set; }
 
