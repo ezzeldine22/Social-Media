@@ -18,3 +18,4 @@ H:\EzzEldine\Technology\Social-Media\SocialMedia\Infrastructure\obj\Debug\net8.0
 H:\EzzEldine\Technology\Social-Media\SocialMedia\Infrastructure\obj\Debug\net8.0\Infrastructure.pdb
 H:\EzzEldine\Technology\Social-Media\SocialMedia\Infrastructure\obj\Debug\net8.0\Infrastructure.genruntimeconfig.cache
 H:\EzzEldine\Technology\Social-Media\SocialMedia\Infrastructure\obj\Debug\net8.0\ref\Infrastructure.dll
+D:\social media project\Social-Media\SocialMedia\Infrastructure\obj\Debug\net8.0\Infrastructure.pdb

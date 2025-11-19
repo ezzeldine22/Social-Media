@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\SocialMedia\\API.csproj": {}
+    "D:\\social media project\\Social-Media\\SocialMedia\\SocialMedia\\API.csproj": {}
   },
   "projects": {
-    "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Application\\Application.csproj": {
+    "D:\\social media project\\Social-Media\\SocialMedia\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Application\\Application.csproj",
+        "projectUniqueName": "D:\\social media project\\Social-Media\\SocialMedia\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\Ezz Sabek\\.nuget\\packages\\",
-        "outputPath": "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Application\\obj\\",
+        "projectPath": "D:\\social media project\\Social-Media\\SocialMedia\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\Abood\\.nuget\\packages\\",
+        "outputPath": "D:\\social media project\\Social-Media\\SocialMedia\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Ezz Sabek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Abood\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Domain\\Domain.csproj": {
-                "projectPath": "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Domain\\Domain.csproj"
+              "D:\\social media project\\Social-Media\\SocialMedia\\Domain\\Domain.csproj": {
+                "projectPath": "D:\\social media project\\Social-Media\\SocialMedia\\Domain\\Domain.csproj"
               }
             }
           }
@@ -42,13 +43,7 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.300"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -64,29 +59,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Domain\\Domain.csproj": {
+    "D:\\social media project\\Social-Media\\SocialMedia\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Domain\\Domain.csproj",
+        "projectUniqueName": "D:\\social media project\\Social-Media\\SocialMedia\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\Ezz Sabek\\.nuget\\packages\\",
-        "outputPath": "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Domain\\obj\\",
+        "projectPath": "D:\\social media project\\Social-Media\\SocialMedia\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Abood\\.nuget\\packages\\",
+        "outputPath": "D:\\social media project\\Social-Media\\SocialMedia\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Ezz Sabek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Abood\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -95,6 +85,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -107,27 +98,11 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.300"
+        }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "dependencies": {
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "Microsoft.Extensions.Identity.Stores": {
-              "target": "Package",
-              "version": "[8.0.1, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -139,29 +114,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Infrastructure\\Infrastructure.csproj": {
+    "D:\\social media project\\Social-Media\\SocialMedia\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "D:\\social media project\\Social-Media\\SocialMedia\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\Ezz Sabek\\.nuget\\packages\\",
-        "outputPath": "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Infrastructure\\obj\\",
+        "projectPath": "D:\\social media project\\Social-Media\\SocialMedia\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Abood\\.nuget\\packages\\",
+        "outputPath": "D:\\social media project\\Social-Media\\SocialMedia\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Ezz Sabek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Abood\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -170,17 +140,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Application\\Application.csproj": {
-                "projectPath": "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Application\\Application.csproj"
+              "D:\\social media project\\Social-Media\\SocialMedia\\Application\\Application.csproj": {
+                "projectPath": "D:\\social media project\\Social-Media\\SocialMedia\\Application\\Application.csproj"
               },
-              "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Domain\\Domain.csproj": {
-                "projectPath": "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Domain\\Domain.csproj"
+              "D:\\social media project\\Social-Media\\SocialMedia\\Domain\\Domain.csproj": {
+                "projectPath": "D:\\social media project\\Social-Media\\SocialMedia\\Domain\\Domain.csproj"
               }
             }
           }
@@ -189,35 +160,11 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.300"
+        }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "dependencies": {
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -229,29 +176,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\SocialMedia\\API.csproj": {
+    "D:\\social media project\\Social-Media\\SocialMedia\\SocialMedia\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\SocialMedia\\API.csproj",
+        "projectUniqueName": "D:\\social media project\\Social-Media\\SocialMedia\\SocialMedia\\API.csproj",
         "projectName": "API",
-        "projectPath": "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\SocialMedia\\API.csproj",
-        "packagesPath": "C:\\Users\\Ezz Sabek\\.nuget\\packages\\",
-        "outputPath": "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\SocialMedia\\obj\\",
+        "projectPath": "D:\\social media project\\Social-Media\\SocialMedia\\SocialMedia\\API.csproj",
+        "packagesPath": "C:\\Users\\Abood\\.nuget\\packages\\",
+        "outputPath": "D:\\social media project\\Social-Media\\SocialMedia\\SocialMedia\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Ezz Sabek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Abood\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -260,17 +202,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Application\\Application.csproj": {
-                "projectPath": "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Application\\Application.csproj"
+              "D:\\social media project\\Social-Media\\SocialMedia\\Application\\Application.csproj": {
+                "projectPath": "D:\\social media project\\Social-Media\\SocialMedia\\Application\\Application.csproj"
               },
-              "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "H:\\EzzEldine\\Technology\\Social-Media\\SocialMedia\\Infrastructure\\Infrastructure.csproj"
+              "D:\\social media project\\Social-Media\\SocialMedia\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "D:\\social media project\\Social-Media\\SocialMedia\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -279,23 +222,11 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.300"
+        }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "dependencies": {
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[6.6.2, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -307,15 +238,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -11,3 +11,16 @@ H:\EzzEldine\Technology\Social-Media\SocialMedia\Domain\obj\Debug\net8.0\Domain.
 H:\EzzEldine\Technology\Social-Media\SocialMedia\Domain\obj\Debug\net8.0\refint\Domain.dll
 H:\EzzEldine\Technology\Social-Media\SocialMedia\Domain\obj\Debug\net8.0\Domain.pdb
 H:\EzzEldine\Technology\Social-Media\SocialMedia\Domain\obj\Debug\net8.0\ref\Domain.dll
+D:\social media project\Social-Media\SocialMedia\Domain\bin\Debug\net8.0\Domain.deps.json
+D:\social media project\Social-Media\SocialMedia\Domain\bin\Debug\net8.0\Domain.dll
+D:\social media project\Social-Media\SocialMedia\Domain\bin\Debug\net8.0\Domain.pdb
+D:\social media project\Social-Media\SocialMedia\Domain\obj\Debug\net8.0\Domain.csproj.AssemblyReference.cache
+D:\social media project\Social-Media\SocialMedia\Domain\obj\Debug\net8.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\social media project\Social-Media\SocialMedia\Domain\obj\Debug\net8.0\Domain.AssemblyInfoInputs.cache
+D:\social media project\Social-Media\SocialMedia\Domain\obj\Debug\net8.0\Domain.AssemblyInfo.cs
+D:\social media project\Social-Media\SocialMedia\Domain\obj\Debug\net8.0\Domain.csproj.CoreCompileInputs.cache
+D:\social media project\Social-Media\SocialMedia\Domain\obj\Debug\net8.0\Domain.sourcelink.json
+D:\social media project\Social-Media\SocialMedia\Domain\obj\Debug\net8.0\Domain.dll
+D:\social media project\Social-Media\SocialMedia\Domain\obj\Debug\net8.0\refint\Domain.dll
+D:\social media project\Social-Media\SocialMedia\Domain\obj\Debug\net8.0\Domain.pdb
+D:\social media project\Social-Media\SocialMedia\Domain\obj\Debug\net8.0\ref\Domain.dll
