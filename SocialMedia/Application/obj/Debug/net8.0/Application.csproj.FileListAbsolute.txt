@@ -14,10 +14,19 @@ H:\EzzEldine\Technology\Social-Media\SocialMedia\Application\obj\Debug\net8.0\Ap
 H:\EzzEldine\Technology\Social-Media\SocialMedia\Application\obj\Debug\net8.0\refint\Application.dll
 H:\EzzEldine\Technology\Social-Media\SocialMedia\Application\obj\Debug\net8.0\Application.pdb
 H:\EzzEldine\Technology\Social-Media\SocialMedia\Application\obj\Debug\net8.0\ref\Application.dll
+D:\social media project\Social-Media\SocialMedia\Application\bin\Debug\net8.0\Application.deps.json
+D:\social media project\Social-Media\SocialMedia\Application\bin\Debug\net8.0\Application.dll
+D:\social media project\Social-Media\SocialMedia\Application\bin\Debug\net8.0\Application.pdb
+D:\social media project\Social-Media\SocialMedia\Application\bin\Debug\net8.0\Domain.dll
+D:\social media project\Social-Media\SocialMedia\Application\bin\Debug\net8.0\Domain.pdb
 D:\social media project\Social-Media\SocialMedia\Application\obj\Debug\net8.0\Application.csproj.AssemblyReference.cache
 D:\social media project\Social-Media\SocialMedia\Application\obj\Debug\net8.0\Application.GeneratedMSBuildEditorConfig.editorconfig
 D:\social media project\Social-Media\SocialMedia\Application\obj\Debug\net8.0\Application.AssemblyInfoInputs.cache
 D:\social media project\Social-Media\SocialMedia\Application\obj\Debug\net8.0\Application.AssemblyInfo.cs
 D:\social media project\Social-Media\SocialMedia\Application\obj\Debug\net8.0\Application.csproj.CoreCompileInputs.cache
 D:\social media project\Social-Media\SocialMedia\Application\obj\Debug\net8.0\Application.sourcelink.json
+D:\social media project\Social-Media\SocialMedia\Application\obj\Debug\net8.0\Applicat.44B5EDA2.Up2Date
+D:\social media project\Social-Media\SocialMedia\Application\obj\Debug\net8.0\Application.dll
+D:\social media project\Social-Media\SocialMedia\Application\obj\Debug\net8.0\refint\Application.dll
 D:\social media project\Social-Media\SocialMedia\Application\obj\Debug\net8.0\Application.pdb
+D:\social media project\Social-Media\SocialMedia\Application\obj\Debug\net8.0\ref\Application.dll

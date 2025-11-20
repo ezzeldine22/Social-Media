@@ -21,6 +21,7 @@ namespace SocialMedia
             builder.Services.AddDbContext<SocialMediaContext>
             (options => options.UseSqlServer(builder.Configuration.GetConnectionString("constr")));
 
+                
             builder.Services.AddIdentity<User, IdentityRole>(options =>
             {
                 // Password settings (optional)
@@ -31,9 +32,10 @@ namespace SocialMedia
                 options.Password.RequiredLength = 6;
             }).AddEntityFrameworkStores<SocialMediaContext>()
               .AddDefaultTokenProviders();
+            
 
             builder.Services.AddScoped<IUserService, UserService>();
-
+            builder.Services.AddScoped<IAccountServices, AccountServices>();
 
 
 

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-namespace Application.DTOs.AcountDTOs
+namespace Application.DTOs.AccountDTOs
 {
-    internal class RegisterDto
+    public class RegisterDto
     {
         [Required]
         public string Name { get; set; }
