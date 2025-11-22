@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.DTOs
+namespace Application.DTOs.UserDTOs
 {
-    internal class SearchForUserDTO
+    internal class UpdateUserProfileDTO
     {
     }
 }

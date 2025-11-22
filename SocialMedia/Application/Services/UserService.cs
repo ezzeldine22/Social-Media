@@ -1,5 +1,5 @@
 ﻿using API.Domain.Entites;
-using Application.DTOs;
+using Application.DTOs.UserDTOs;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -18,9 +18,23 @@ namespace Application.Services
         {
             _userManager = userManager;
         }
-        //public async Task<GetUserProfileDTO> GetUserProfile(string id)
-        //{
-        //    var userProfile =  await _userManager.FindByIdAsync(id);
-        //}
+        public async Task<GetUserProfileDTO> GetUserProfile(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                // some handling logic
+                
+            }
+            var userProfile = new GetUserProfileDTO
+            {
+                Name = user.Name,
+                Email = user.Email,
+                Phone = user.PhoneNumber,
+                Bio = user.Bio,
+                Pic = user.Pic
+            };
+            return userProfile;
+        }
     }
 }

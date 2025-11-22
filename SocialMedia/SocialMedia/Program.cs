@@ -1,6 +1,12 @@
+using API.Domain.Entites;
 using Application.Interfaces;
+using Application.Services;
 using Infrastructure.Presistence;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace SocialMedia
 {
@@ -17,6 +23,44 @@ namespace SocialMedia
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             builder.Services.AddDbContext<SocialMediaContext>
             (options => options.UseSqlServer(builder.Configuration.GetConnectionString("constr")));
+
+                
+            builder.Services.AddIdentity<User, IdentityRole>(options =>
+            {
+                // Password settings (optional)
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = 6;
+            }).AddEntityFrameworkStores<SocialMediaContext>()
+              .AddDefaultTokenProviders();
+            
+
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IAccountServices, AccountServices>();
+
+
+            // Authentication with JWT
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+               .AddJwtBearer(options =>
+               {
+                   options.TokenValidationParameters = new TokenValidationParameters
+                   {
+                       ValidateIssuer = true,
+                       ValidateAudience = true,
+
+                       ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
+                       ValidAudience = builder.Configuration["JWT:ValidAudience"],
+                       IssuerSigningKey = new SymmetricSecurityKey(
+                           Encoding.UTF8.GetBytes(builder.Configuration["JWT:secret"]))
+                   };
+               });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
