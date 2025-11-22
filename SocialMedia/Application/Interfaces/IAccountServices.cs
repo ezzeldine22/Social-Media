@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application.DTOs.AccountDTOs;
+using Domain.Validation;
 namespace Application.Interfaces
 {
     public interface IAccountServices
     {
-        public  Task<string> RegisterAsync(RegisterDto dto);
+        public Task<Result> RegisterAsync(RegisterDto dto);
+        public Task<ResultT<LoginResponsesDto>> LoginAsync(LoginDto dto); 
     }
 }
