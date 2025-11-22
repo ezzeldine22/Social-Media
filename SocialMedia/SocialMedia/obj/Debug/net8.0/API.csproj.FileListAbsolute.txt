@@ -302,3 +302,4 @@ D:\social media project\Social-Media\SocialMedia\SocialMedia\obj\Debug\net8.0\re
 D:\social media project\Social-Media\SocialMedia\SocialMedia\obj\Debug\net8.0\API.pdb
 D:\social media project\Social-Media\SocialMedia\SocialMedia\obj\Debug\net8.0\API.genruntimeconfig.cache
 D:\social media project\Social-Media\SocialMedia\SocialMedia\obj\Debug\net8.0\ref\API.dll
+D:\social media project\Social-Media\SocialMedia\SocialMedia\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

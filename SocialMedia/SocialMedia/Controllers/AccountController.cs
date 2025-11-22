@@ -18,8 +18,28 @@ namespace API.Controllers
         [HttpPost("Register")]
         public async Task<IActionResult> Register(RegisterDto dto)
         {
-           var res =  await _userAccountServices.RegisterAsync(dto);
-            return Ok(); 
+            try
+            {
+                var res = await _userAccountServices.RegisterAsync(dto);
+                return Ok(res.Message);
+            }
+            catch (Exception ex) { 
+                return BadRequest($"Failed to Register {ex.Message}");  
+            }
+           
+        }
+
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login(LoginDto loginDto)
+        {
+            try
+            {
+                var res = await _userAccountServices.LoginAsync(loginDto);
+                return Ok(res);
+            }
+            catch (Exception ex) { 
+                return BadRequest($"Failed to login {ex.Message}"); 
+            }
         }
 
     }

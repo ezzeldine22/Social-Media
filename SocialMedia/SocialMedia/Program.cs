@@ -2,8 +2,11 @@ using API.Domain.Entites;
 using Application.Interfaces;
 using Application.Services;
 using Infrastructure.Presistence;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace SocialMedia
 {
@@ -38,7 +41,25 @@ namespace SocialMedia
             builder.Services.AddScoped<IAccountServices, AccountServices>();
 
 
+            // Authentication with JWT
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+               .AddJwtBearer(options =>
+               {
+                   options.TokenValidationParameters = new TokenValidationParameters
+                   {
+                       ValidateIssuer = true,
+                       ValidateAudience = true,
 
+                       ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
+                       ValidAudience = builder.Configuration["JWT:ValidAudience"],
+                       IssuerSigningKey = new SymmetricSecurityKey(
+                           Encoding.UTF8.GetBytes(builder.Configuration["JWT:secret"]))
+                   };
+               });
 
             var app = builder.Build();
 
