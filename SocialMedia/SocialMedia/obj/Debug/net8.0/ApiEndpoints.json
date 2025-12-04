@@ -32,6 +32,70 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "API.Controllers.FollowingController",
+    "Method": "follow",
+    "RelativePath": "api/Following/Follow",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Application.DTOs.FollowingDTOs.FollowDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.FollowingController",
+    "Method": "getAllFollower",
+    "RelativePath": "api/Following/get-all-followers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.FollowingController",
+    "Method": "getAllFollowing",
+    "RelativePath": "api/Following/get-all-following",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.FollowingController",
+    "Method": "unfollow",
+    "RelativePath": "api/Following/unfollow",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Application.DTOs.FollowingDTOs.FollowDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "API.Controllers.UserController",
     "Method": "GetUserProfile",
     "RelativePath": "User/GetUserProfile/{id}",

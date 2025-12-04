@@ -17,6 +17,7 @@ namespace Application.Interfaces
         IEnumerable<TEntity> Where(Expression<Func<TEntity, bool>> predicate);
         void Update(TEntity entity);
         Task DeleteAsync(int entityID);
+        Task DeleteAsync(long entityID);
 
         Task SaveChanges();
 

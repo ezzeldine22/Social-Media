@@ -2,10 +2,12 @@ using API.Domain.Entites;
 using Application.Interfaces;
 using Application.Services;
 using Infrastructure.Presistence;
+using Infrastructure.Presistence.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Text;
 
 namespace SocialMedia
@@ -39,8 +41,7 @@ namespace SocialMedia
 
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IAccountServices, AccountServices>();
-
-
+            builder.Services.AddScoped<IFollowing , Following>();
             // Authentication with JWT
             builder.Services.AddAuthentication(options =>
             {

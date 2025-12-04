@@ -44,6 +44,13 @@ namespace Infrastructure.Presistence
             var oData = await _entity.FindAsync(entityID);
             _entity.Remove(oData);
         }
+        public async Task  DeleteAsync(long entityID)
+        {
+            var oData = await _entity.FindAsync(entityID);
+            _entity.Remove(oData);
+        }
+        
+
 
         public async Task SaveChanges()
         {
