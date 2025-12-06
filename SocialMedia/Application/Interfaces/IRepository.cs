@@ -11,6 +11,7 @@ namespace Application.Interfaces
     {
         Task<TEntity> AddAsync(TEntity entity);
         Task<TEntity> ReadById(int RowID);
+        Task<TEntity> ReadById(long RowID);
         IQueryable<TEntity> ReadAll();
 
         Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
