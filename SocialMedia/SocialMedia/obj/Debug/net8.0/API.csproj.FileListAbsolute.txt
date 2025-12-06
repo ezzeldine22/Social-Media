@@ -161,6 +161,7 @@ D:\social media project\Social-Media\SocialMedia\SocialMedia\bin\Debug\net8.0\AP
 D:\social media project\Social-Media\SocialMedia\SocialMedia\bin\Debug\net8.0\Azure.Core.dll
 D:\social media project\Social-Media\SocialMedia\SocialMedia\bin\Debug\net8.0\Azure.Identity.dll
 D:\social media project\Social-Media\SocialMedia\SocialMedia\bin\Debug\net8.0\Humanizer.dll
+D:\social media project\Social-Media\SocialMedia\SocialMedia\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\social media project\Social-Media\SocialMedia\SocialMedia\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 D:\social media project\Social-Media\SocialMedia\SocialMedia\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 D:\social media project\Social-Media\SocialMedia\SocialMedia\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
@@ -302,4 +303,3 @@ D:\social media project\Social-Media\SocialMedia\SocialMedia\obj\Debug\net8.0\re
 D:\social media project\Social-Media\SocialMedia\SocialMedia\obj\Debug\net8.0\API.pdb
 D:\social media project\Social-Media\SocialMedia\SocialMedia\obj\Debug\net8.0\API.genruntimeconfig.cache
 D:\social media project\Social-Media\SocialMedia\SocialMedia\obj\Debug\net8.0\ref\API.dll
-D:\social media project\Social-Media\SocialMedia\SocialMedia\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

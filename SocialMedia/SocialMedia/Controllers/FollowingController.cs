@@ -44,7 +44,7 @@ namespace API.Controllers
             }
         }
         [HttpGet("get-all-followers")]
-
+        
         public async Task<IActionResult> getAllFollower(string userId)
         {
             try
