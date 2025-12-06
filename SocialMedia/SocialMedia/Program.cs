@@ -1,3 +1,4 @@
+using API;
 using API.Domain.Entites;
 using Application.Interfaces;
 using Application.Services;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Text;
 
@@ -21,7 +23,56 @@ namespace SocialMedia
             // Add services to the container.
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
+
+                // Add the JWT Bearer definition
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "Enter 'Bearer' followed by a space and the JWT token."
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+       {
+   {
+       new OpenApiSecurityScheme
+       {
+           Reference = new OpenApiReference
+           {
+               Type = ReferenceType.SecurityScheme,
+               Id = "Bearer"
+           }
+       },
+       Array.Empty<string>()
+        }
+       });
+
+                var basePath = AppContext.BaseDirectory;
+
+                // API project XML
+                var apiXml = Path.Combine(basePath, "E-Learning.xml");
+                if (File.Exists(apiXml))
+                    c.IncludeXmlComments(apiXml, true);
+
+                // Application project XML
+                var appXmlPath = Path.Combine(AppContext.BaseDirectory, @"..\..\..\..\Application\bin\Debug\net8.0\Application.xml");
+                appXmlPath = Path.GetFullPath(appXmlPath);
+                if (File.Exists(appXmlPath))
+                    c.IncludeXmlComments(appXmlPath, true);
+
+                // Domain project XML (optional)
+                var domainXmlPath = Path.Combine(AppContext.BaseDirectory, @"..\..\..\..\Domain\bin\Debug\net8.0\Domain.xml");
+                domainXmlPath = Path.GetFullPath(domainXmlPath);
+                if (File.Exists(domainXmlPath))
+                    c.IncludeXmlComments(domainXmlPath, true);
+            });
+
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             builder.Services.AddDbContext<SocialMediaContext>
             (options => options.UseSqlServer(builder.Configuration.GetConnectionString("constr")));
@@ -42,6 +93,9 @@ namespace SocialMedia
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IAccountServices, AccountServices>();
             builder.Services.AddScoped<IFollowing , Following>();
+            builder.Services.AddScoped<IPost, PostRepo>();
+            builder.Services.AddScoped<IUserContext, UserContext>();
+            builder.Services.AddHttpContextAccessor();
             // Authentication with JWT
             builder.Services.AddAuthentication(options =>
             {
