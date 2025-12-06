@@ -30,6 +30,10 @@ namespace Infrastructure.Presistence
         {
             return await _entity.FindAsync(RowID);
         }
+        public async Task<TEntity> ReadById(long RowID)
+        {
+            return await _entity.FindAsync(RowID);
+        }
         public IQueryable<TEntity> ReadAll()
         {
             return _entity.AsNoTracking();
@@ -50,8 +54,6 @@ namespace Infrastructure.Presistence
             _entity.Remove(oData);
         }
         
-
-
         public async Task SaveChanges()
         {
             await _context.SaveChangesAsync();
