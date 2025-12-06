@@ -32,6 +32,154 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "API.Controllers.FollowingController",
+    "Method": "follow",
+    "RelativePath": "api/Following/Follow",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Application.DTOs.FollowingDTOs.FollowDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.FollowingController",
+    "Method": "getAllFollower",
+    "RelativePath": "api/Following/get-all-followers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.FollowingController",
+    "Method": "getAllFollowing",
+    "RelativePath": "api/Following/get-all-following",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.FollowingController",
+    "Method": "unfollow",
+    "RelativePath": "api/Following/unfollow",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Application.DTOs.FollowingDTOs.FollowDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.PostController",
+    "Method": "CreatePost",
+    "RelativePath": "api/Post/CreatePost",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Application.DTOs.PostDTOs.PostDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.PostController",
+    "Method": "DeletePost",
+    "RelativePath": "api/Post/Delete-Post",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "postId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.PostController",
+    "Method": "GetUserPost",
+    "RelativePath": "api/Post/Get-all-posts-of-user",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.PostController",
+    "Method": "GetPostById",
+    "RelativePath": "api/Post/Get-post-by-Id",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "postId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API.Controllers.PostController",
+    "Method": "UpdatePost",
+    "RelativePath": "api/Post/Update-Post",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "postId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "dto",
+        "Type": "Application.DTOs.PostDTOs.PostDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "API.Controllers.UserController",
     "Method": "GetUserProfile",
     "RelativePath": "User/GetUserProfile/{id}",
