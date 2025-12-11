@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using API.Domain.Entites;
+﻿using API.Domain.Entites;
 using Application.DTOs.AccountDTOs;
 using Application.Interfaces;
-using Microsoft.AspNetCore.Identity;
 using Domain.Validation;
-using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
 namespace Application.Services
 {
     public class AccountServices : IAccountServices
@@ -60,7 +61,15 @@ namespace Application.Services
             {
                 return ResultT<LoginResponsesDto>.Failure(["password is Wrong"]);
             }
-            var claims = await _userManager.GetClaimsAsync(user);
+
+            List<Claim> claims = new List<Claim>();
+
+            
+            claims.Add(new Claim(ClaimTypes.Name, user.UserName));
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id));
+            claims.Add(new Claim(ClaimTypes.Email, user.Email));
+
+            await _userManager.AddClaimsAsync(user , claims);
       
 
             SecurityKey securityKey = new SymmetricSecurityKey

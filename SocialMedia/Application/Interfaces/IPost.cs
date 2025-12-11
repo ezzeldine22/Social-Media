@@ -10,7 +10,7 @@ namespace Application.Interfaces
 {
     public interface IPost
     {
-        public Task<Result> CreatePostAsync(PostDto dto , string userId);
+        public Task<Result> CreatePostAsync(PostDto dto );
         public Task<List<PostAllDetailsDtos>> GetPostAsync();
         public Task<PostAllDetailsDtos> GetPostById(long postId);
         public Task<Result> UpdatePostAsync(long postId , PostDto dto);

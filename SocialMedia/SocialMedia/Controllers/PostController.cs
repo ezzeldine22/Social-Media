@@ -17,11 +17,11 @@ namespace API.Controllers
         }
 
         [HttpPost("CreatePost")]
-        public async Task<IActionResult> CreatePost(PostDto dto  , string userId)
+        public async Task<IActionResult> CreatePost(PostDto dto)
         {
             try
             {
-                var res = await _post.CreatePostAsync(dto, userId);
+                var res = await _post.CreatePostAsync(dto);
                 return Ok(res);
             }
             catch (Exception ex)

@@ -16,7 +16,7 @@ namespace API
         {
             var user = _httpContext.HttpContext?.User;
             return user?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-         
+
         }
     }
 }

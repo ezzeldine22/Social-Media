@@ -22,8 +22,9 @@ namespace Infrastructure.Presistence.Repositories
             _userContext = userContext;
         }
 
-        public async Task<Result> CreatePostAsync(PostDto dto , string userId)
+        public async Task<Result> CreatePostAsync(PostDto dto)
         {
+            var userId = _userContext.GetUserId();
             var newPost = new Post
             {
                UserId = userId,
