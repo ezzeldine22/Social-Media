@@ -3,6 +3,7 @@ using Application.DTOs.PostDTOs;
 using Application.Interfaces;
 using Domain.Validation;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +43,32 @@ namespace Infrastructure.Presistence.Repositories
             await _repo.SaveChanges();
             return Result.success("post added successfully");
         }
-       
+        public async Task<IList<SearchPostsDTO>> searchPostsAsync(string query, int pageNumber = 1, int pageSize = 10)
+        {
+            var post = _repo.ReadAll().Where(p =>
+                EF.Functions.Like(p.Caption, $"%{query}%")
+            );
+
+            var result = await post
+                .Skip(pageSize * (pageNumber - 1))
+                .Take(pageSize)
+                .Select(p => new SearchPostsDTO
+                {
+                    Caption = p.Caption,
+                    Comments = p.Comments,
+                    ImageUrl = p.ImageUrl,
+                    CreatedAt = p.CreatedAt,
+                    VideoUrl = p.VideoUrl,
+                    Likes = p.Likes,
+                    Shares = p.Shares,
+                    userPic = p.User.Pic,
+                    userName = p.User.Name
+                    
+                }).ToListAsync(); 
+
+            return result;
+        }
+        
         public async Task<List<PostAllDetailsDtos>> GetPostAsync()
         {
             string userId = _userContext.GetUserId();
