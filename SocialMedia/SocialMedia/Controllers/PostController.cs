@@ -25,8 +25,8 @@ namespace API.Controllers
                 return Ok(res);
             }
             catch (Exception ex)
-            { 
-                return BadRequest(ex.Message);  
+            {
+                return BadRequest(ex.Message);
             }
         }
         [HttpGet("Get-all-posts-of-user")]
@@ -37,7 +37,7 @@ namespace API.Controllers
                 var res = await _post.GetPostAsync();
                 return Ok(res);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -64,7 +64,7 @@ namespace API.Controllers
                 var res = await _post.UpdatePostAsync(postId, dto);
                 return Ok(res);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -78,10 +78,17 @@ namespace API.Controllers
                 var res = _post.DeletePostAsync(postId);
                 return Ok(res.Result);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpPost("SearchPosts")]
+        public async Task<IActionResult> searchPosts(string query, int pageNumber = 1, int pageSize=10)
+        {
+            var result = await _post.searchPostsAsync(query, pageNumber, pageSize);  
+            return Ok(result);
         }
        
     }
