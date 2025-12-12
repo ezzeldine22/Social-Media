@@ -15,5 +15,7 @@ namespace Application.Interfaces
         public Task<PostAllDetailsDtos> GetPostById(long postId);
         public Task<Result> UpdatePostAsync(long postId , PostDto dto);
         public Task<Result> DeletePostAsync(long postId);
+
+        public Task<IList<SearchPostsDTO>>searchPostsAsync(string query, int pageNumber = 1, int pageSize = 10);
     }
 }
