@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace Application.DTOs.UserDTOs
 {
-    internal class UpdateUserProfileDTO
+    public class UpdateUserProfileDTO
     {
+        public string Name { get; set; } = null!;
+
+        public string Email { get; set; } = null!;
+
+        public string? Phone { get; set; }
+
+        public string? Bio { get; set; }
+
+        public string? Pic { get; set; }
     }
 }
