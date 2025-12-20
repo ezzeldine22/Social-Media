@@ -11,8 +11,8 @@ namespace Application.Interfaces
 {
     public interface IFollowing
     {
-        public Task<Result> FollowAsync(FollowDto dto);
-        public Task<Result> UnFollowAsync(FollowDto dto);  
+        public Task<Result> FollowAsync(string followedId);
+        public Task<Result> UnFollowAsync(string UnfollowedId);  
         public Task<List<GetUserProfileDTO>> GetFollowersAsync(string userId);
         public Task<List<GetUserProfileDTO>> GetFollowingAsync(string userId);
     }
