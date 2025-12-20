@@ -3,43 +3,41 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Application.DTOs.AccountDTOs;
+using Application.UseCases.Auth;
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly IAccountServices _userAccountServices;
-        public AccountController(IAccountServices userAccountServices)
+       
+        private readonly LoginUseCase _loginUseCase;
+        private readonly RegisterUserCase _registerUserCase;
+
+        public AccountController(
+            LoginUseCase loginUseCase , RegisterUserCase registerUserCase)
         {
-                _userAccountServices = userAccountServices;
+   
+            _loginUseCase = loginUseCase;
+            _registerUserCase = registerUserCase;
         }
 
         [HttpPost("Register")]
         public async Task<IActionResult> Register(RegisterDto dto)
         {
-            try
-            {
-                var res = await _userAccountServices.RegisterAsync(dto);
+            var res = await _registerUserCase.RegisterAsync(dto);
+            if (res.IsSuccess)
                 return Ok(res.Message);
-            }
-            catch (Exception ex) { 
-                return BadRequest($"Failed to Register {ex.Message}");  
-            }
-           
+            return BadRequest(res.Errors);
         }
 
         [HttpPost("Login")]
         public async Task<IActionResult> Login(LoginDto loginDto)
         {
-            try
-            {
-                var res = await _userAccountServices.LoginAsync(loginDto);
-                return Ok(res);
-            }
-            catch (Exception ex) { 
-                return BadRequest($"Failed to login {ex.Message}"); 
-            }
+            var res = await _loginUseCase.LoginAsync(loginDto);
+            if (res.IsSuccess)
+                return Ok(new { message = res.Message , Date = res.Data });
+            return BadRequest(res.Errors);
         }
 
     }
