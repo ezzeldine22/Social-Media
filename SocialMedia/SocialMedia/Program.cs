@@ -2,6 +2,11 @@ using API;
 using API.Domain.Entites;
 using Application.Interfaces;
 using Application.Services;
+using Application.UseCases.Auth;
+using Application.UseCases.Following;
+using Application.UseCases.Post;
+using Application.UseCases.User;
+using Infrastructure.Identity;
 using Infrastructure.Presistence;
 using Infrastructure.Presistence.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -95,6 +100,34 @@ namespace SocialMedia
             builder.Services.AddScoped<IFollowing , Following>();
             builder.Services.AddScoped<IPost, PostRepo>();
             builder.Services.AddScoped<IUserContext, UserContext>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IUserManagerService, UserManagerService>();
+
+            //Authentication usecases registeration
+            builder.Services.AddScoped<LoginUseCase>();
+            builder.Services.AddScoped<RegisterUserCase>();
+
+            // user usescases registeration
+            builder.Services.AddScoped<GetUserProfileUseCase>();
+            builder.Services.AddScoped<SearchAllUseCase>();
+            builder.Services.AddScoped<SearchUsersUseCase>();
+            builder.Services.AddScoped<UpdateUserProfileUseCase>();
+            builder.Services.AddScoped<IJWTService,JWTservice>();
+
+            // following usecases registeration
+            builder.Services.AddScoped<FollowingUseCase>();
+            builder.Services.AddScoped<GetAllFollowersUseCase>();
+            builder.Services.AddScoped<GetAllFollowingUseCase>();
+            builder.Services.AddScoped<UnFollowUseCase>();
+            // posts use cases registeration 
+            builder.Services.AddScoped<CreatePostUseCase>();
+            builder.Services.AddScoped<DeletePostUseCase>();
+            builder.Services.AddScoped<GetPostByIDUseCase>();
+            builder.Services.AddScoped<GetUserPostsUseCase>();
+            builder.Services.AddScoped<SearchPostsUseCase>();
+            builder.Services.AddScoped<UpdatePostUseCase>();
+
+
             builder.Services.AddHttpContextAccessor();
             // Authentication with JWT
             builder.Services.AddAuthentication(options =>
