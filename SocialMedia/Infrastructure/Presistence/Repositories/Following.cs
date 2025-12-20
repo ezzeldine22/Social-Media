@@ -17,54 +17,52 @@ namespace Infrastructure.Presistence.Repositories
     {
 
         private readonly IRepository<Follow> _repo;
+        private readonly IUserContext _userContext;
         private readonly UserManager<User> _userManager;
 
-        public Following(IRepository<Follow> repo, UserManager<User> userManager)
+        public Following(IRepository<Follow> repo,IUserContext userContext ,UserManager<User> userManager)
         {
             _repo = repo;
+            _userContext = userContext;
             _userManager = userManager;
         }
 
-        public async Task<Result> FollowAsync(FollowDto dto)
+        public async Task<Result> FollowAsync(string followedId)
         {
-            if (string.IsNullOrWhiteSpace(dto.FollowerId) || string.IsNullOrWhiteSpace(dto.FollowedId))
+            string followingId = _userContext.GetUserId();
+            if (string.IsNullOrWhiteSpace(followedId))
             {
-                return Result.Failure(new List<string> { "Invalid IDs" });
+                return Result.Failure(new List<string> { "Invalid ID" });
             }
             var date = DateTime.Now;
             var newFollow = new Follow
             {
-                FollowerId = dto.FollowerId,
-                FollowedId = dto.FollowedId,
+                FollowerId = followingId,
+                FollowedId = followedId,
                 CreatedAt = date
             };
             var res = await _repo.AddAsync(newFollow);
             await _repo.SaveChanges();
-
-
             if (res == null)
             {
                 return Result.Failure(new List<string> { "something wrong" });
             }
-
             return Result.success("success following");
         }
 
-        public async Task<Result> UnFollowAsync(FollowDto dto)
+        public async Task<Result> UnFollowAsync(string UnfollowedId)
         {
-            if (string.IsNullOrWhiteSpace(dto.FollowedId) || string.IsNullOrWhiteSpace(dto.FollowerId))
+            if (string.IsNullOrWhiteSpace(UnfollowedId))
             {
-                return Result.Failure(new List<string> { "Invalid IDs" });
+                return Result.Failure(new List<string> { "Invalid ID" });
             }
-
-            var res = await _repo.FirstOrDefaultAsync(f => f.FollowerId == dto.FollowerId &&
-            f.FollowedId == dto.FollowedId);
+            var unfollowingId = _userContext.GetUserId();
+            var res = await _repo.FirstOrDefaultAsync(f => f.FollowerId == unfollowingId &&
+            f.FollowedId == UnfollowedId);
             await _repo.DeleteAsync((long)res.Id);
             await _repo.SaveChanges();
             return Result.success("success unfollow");
         }
-
-
         public async Task<List<GetUserProfileDTO>> GetFollowersAsync(string userId)
         {
             var followerIds = _repo
@@ -83,9 +81,6 @@ namespace Infrastructure.Presistence.Repositories
 
             return followers;
         }
-
-
-
         public async Task<List<GetUserProfileDTO>> GetFollowingAsync(string userId)
         {
             var followerIds = _repo.Where(f => f.FollowerId == userId)
