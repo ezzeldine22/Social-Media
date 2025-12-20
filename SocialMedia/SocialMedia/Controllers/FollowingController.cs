@@ -1,77 +1,61 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Application.Services;
+﻿using Microsoft.AspNetCore.Mvc;
 using Application.DTOs.FollowingDTOs;
-using Application.Interfaces;
+using Application.UseCases.Following;
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class FollowingController : ControllerBase
     {
-        private readonly IFollowing _followingServices;
-        public FollowingController(IFollowing followingServices)
+        private readonly FollowingUseCase _followingUseCase;
+        private readonly GetAllFollowingUseCase _getAllFollowingUseCase;
+        private readonly GetAllFollowersUseCase _getAllFollowersUseCase;
+        private readonly UnFollowUseCase _unFollowUseCase;
+
+        public FollowingController(
+            FollowingUseCase followingUseCase , 
+            GetAllFollowingUseCase getAllFollowingUseCase ,
+            GetAllFollowersUseCase getAllFollowersUseCase ,
+            UnFollowUseCase unFollowUseCase)
         {
 
-            _followingServices = followingServices;
+            _followingUseCase = followingUseCase;
+            _getAllFollowingUseCase = getAllFollowingUseCase;
+            _getAllFollowersUseCase = getAllFollowersUseCase;
+            _unFollowUseCase = unFollowUseCase;
         }
 
         [HttpPost("Follow")]
-        public async Task<IActionResult> follow(FollowDto dto)
+        public async Task<IActionResult> follow(string followedId)
         {
-            var follow = await _followingServices.FollowAsync(dto);
+            var follow = await _followingUseCase.FollowAsync(followedId);
             if (follow.IsSuccess)
-            {
-                return Ok(follow);
-            }
-            else
-            {
-                return BadRequest(follow.Errors);
-            }
-
+                return Ok(follow.Message);
+            return BadRequest(follow.Errors);
         }
         [HttpDelete("unfollow")]
-        public async Task<IActionResult> unfollow(FollowDto dto)
+        public async Task<IActionResult> unfollow(string UnfollowedId)
         {
-            var unfollow = await _followingServices.UnFollowAsync(dto);
+            var unfollow = await _unFollowUseCase.UnFollowAsync(UnfollowedId);
             if (unfollow.IsSuccess)
-            {
-                return Ok(unfollow);
-            }
-            else
-            {
-                return BadRequest(unfollow.Errors);
-            }
+                return Ok(unfollow.Message);
+            return BadRequest(unfollow.Errors);
         }
         [HttpGet("get-all-followers")]
-        
-        public async Task<IActionResult> getAllFollower(string userId)
+        public async Task<IActionResult> getAllFollower()
         {
-            try
-            {
-                var followers = await _followingServices.GetFollowersAsync(userId);
-                return Ok(followers);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            
+            var followers = await _getAllFollowersUseCase.GetFollowersAsync();
+            if (followers.IsSuccess)
+                return Ok(followers.Data);
+            return BadRequest(followers.Errors);
         }
         [HttpGet("get-all-following")]
-
-        public async Task<IActionResult> getAllFollowing(string userId)
+        public async Task<IActionResult> getAllFollowing()
         {
-            try
-            {
-                var followers = await _followingServices.GetFollowingAsync(userId);
-                return Ok(followers);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
+            var following = await _getAllFollowingUseCase.GetFollowingAsync();
+            if (following.IsSuccess)
+                return Ok(following.Data);
+            return BadRequest(following.Errors);
         }
     }
 }
