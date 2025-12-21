@@ -1,4 +1,5 @@
 ﻿using API.Domain.Entites;
+using Application.DTOs;
 using Application.DTOs.PostDTOs;
 using Application.Interfaces;
 using Domain.Validation;
@@ -15,14 +16,14 @@ namespace Infrastructure.Presistence.Repositories
     public class PostRepo : IPost
     {
         private readonly IRepository<Post> _repo;
+        private readonly IRepository<Comment> _commentsRepo;
         private readonly IUserContext _userContext;
-
-        public PostRepo(IRepository<Post> repo  , IUserContext userContext)
+        public PostRepo(IRepository<Post> repo , IRepository<Comment> commentsRepo , IUserContext userContext)
         {
             _repo = repo;
+            _commentsRepo = commentsRepo;
             _userContext = userContext;
         }
-
         public async Task<Result> CreatePostAsync(PostDto dto)
         {
             var userId = _userContext.GetUserId();
@@ -68,7 +69,6 @@ namespace Infrastructure.Presistence.Repositories
 
             return result;
         }
-        
         public async Task<List<PostAllDetailsDtos>> GetPostAsync()
         {
             string userId = _userContext.GetUserId();
@@ -83,7 +83,6 @@ namespace Infrastructure.Presistence.Repositories
                 }).ToList();
             return AllPosts;
         }
-
         public async Task<PostAllDetailsDtos> GetPostById(long postId)
         {
             var post = await _repo.ReadById(postId);
@@ -98,8 +97,6 @@ namespace Infrastructure.Presistence.Repositories
             };
             return postDetails;
         }
-
-
         public async Task<Result> UpdatePostAsync(long postId , PostDto dto)
         {
             
@@ -115,8 +112,6 @@ namespace Infrastructure.Presistence.Repositories
             await _repo.SaveChanges();
             return Result.success("update post successfully ");
         }
-
-        
         public async Task<Result> DeletePostAsync(long postId)
         {
             var post = await _repo.ReadById(postId);
@@ -128,6 +123,49 @@ namespace Infrastructure.Presistence.Repositories
             await _repo.DeleteAsync((long)postId);
             await _repo.SaveChanges();
             return Result.success("post Deleted SuccessFully");
+        }
+        public async Task<Result> AddCommentToPost(CommentDTO commentDTO)
+        {
+            var post = await _repo.ReadById(commentDTO.postID);
+            if (post == null)
+                return Result.Failure(new List<string>() { "not found post" });
+
+            var userId = _userContext.GetUserId();
+            var new_comment = new Comment
+            {
+                CreatedAt = DateTime.Now,
+                PostId = commentDTO.postID,
+                Text = commentDTO.comment,
+                UserId = userId,
+            };
+            post.Comments.Add(new_comment);
+            await _repo.SaveChanges();
+            return Result.success("comment added successfully");
+        }
+        public async Task<ResultT<IEnumerable<GetCommentDTO>>> GetPostCommentsAsync(long postId)
+        {
+            var result = await _repo.ReadAll().
+            Where(p => p.Id == postId).
+            SelectMany(p => p.Comments.Select(c=> new GetCommentDTO{
+                CommmentDateTime = c.CreatedAt,
+                Text = c.Text,
+                userId = c.UserId,
+                userName = c.User.Name,
+                userPic = c.User.Pic, 
+                CommentID = c.Id,
+            })).ToListAsync();
+            return ResultT<IEnumerable<GetCommentDTO>>.success(result);
+        }
+        public async Task<Result> deleteCommentAsync(long commentId)
+        {
+            var comment = await _commentsRepo.ReadById(commentId);
+            if (comment == null)
+            {
+                return Result.Failure(new List<string> {" No Comment found "});
+            }
+            await _commentsRepo.DeleteAsync(commentId);
+            await _commentsRepo.SaveChanges();
+            return Result.success(" Comment deleted successfully ");
         }
     }
 }
