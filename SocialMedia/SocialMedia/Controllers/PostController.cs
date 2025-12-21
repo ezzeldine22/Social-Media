@@ -1,5 +1,7 @@
-﻿using Application.DTOs.PostDTOs;
+﻿using Application.DTOs;
+using Application.DTOs.PostDTOs;
 using Application.Interfaces;
+using Application.UseCases.Comments;
 using Application.UseCases.Post;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,21 +13,25 @@ namespace API.Controllers
     [ApiController]
     public class PostController : ControllerBase
     {
-      
         private readonly CreatePostUseCase _createPostUseCase;
         private readonly DeletePostUseCase _deletePostUseCase;
         private readonly GetPostByIDUseCase _getPostByIDUseCase;
         private readonly GetUserPostsUseCase _getUserPostsUseCase;
         private readonly SearchPostsUseCase _searchPostsUseCase;
         private readonly UpdatePostUseCase _updatePostUseCase;
-
+        private readonly AddCommentUseCase _addCommentUseCase;
+        private readonly GetPostCommentsUseCase _getPostCommentsUseCase;
+        private readonly DeleteCommentUseCase _deleteCommentUseCase;
         public PostController(
             CreatePostUseCase createPostUseCase , 
             DeletePostUseCase deletePostUseCase , 
             GetPostByIDUseCase getPostByIDUseCase , 
             GetUserPostsUseCase getUserPostsUseCase ,
             SearchPostsUseCase searchPostsUseCase ,
-            UpdatePostUseCase updatePostUseCase)
+            UpdatePostUseCase updatePostUseCase,
+            AddCommentUseCase addCommentUseCase,
+            GetPostCommentsUseCase getPostCommentsUseCase,
+            DeleteCommentUseCase deleteCommentUseCase)
         {
             _createPostUseCase = createPostUseCase;
             _deletePostUseCase = deletePostUseCase;
@@ -33,6 +39,9 @@ namespace API.Controllers
             _getUserPostsUseCase = getUserPostsUseCase;
             _searchPostsUseCase = searchPostsUseCase;
             _updatePostUseCase = updatePostUseCase;
+            _addCommentUseCase = addCommentUseCase;
+            _getPostCommentsUseCase = getPostCommentsUseCase;
+            _deleteCommentUseCase = deleteCommentUseCase;
         }
 
         [HttpPost("CreatePost")]
@@ -86,6 +95,37 @@ namespace API.Controllers
             return Ok(result.Data);
             return BadRequest(result.Errors);
         }
-       
+
+        [HttpPost("AddCommentToPost")]
+        public async Task<IActionResult> AddCommentToPost(CommentDTO commentDTO)
+        {
+            var result = await _addCommentUseCase.addCommentAsync(commentDTO);
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.Errors);
+            }
+            return Ok(result.Message);
+        }
+
+        [HttpGet("GetComments")]
+        public async Task<IActionResult> GetPostComments(long postId)
+        {
+            var result =  await _getPostCommentsUseCase.GetPostCommentsAsync(postId);
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.Errors);
+            }
+            return Ok(new {comments = result.Data});
+        }
+
+        [HttpDelete("DeleteComment")]
+        public async Task<IActionResult> deleteComment(int commentID)
+        {
+            var result = await _deleteCommentUseCase.deleteCommentAsync(commentID);
+            if (!result.IsSuccess)
+                return BadRequest(result.Errors);
+            return Ok(result.Message);
+        }
     }
 }
