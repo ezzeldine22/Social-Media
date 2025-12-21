@@ -3,6 +3,7 @@ using API.Domain.Entites;
 using Application.Interfaces;
 using Application.Services;
 using Application.UseCases.Auth;
+using Application.UseCases.Comments;
 using Application.UseCases.Following;
 using Application.UseCases.Post;
 using Application.UseCases.User;
@@ -126,6 +127,10 @@ namespace SocialMedia
             builder.Services.AddScoped<GetUserPostsUseCase>();
             builder.Services.AddScoped<SearchPostsUseCase>();
             builder.Services.AddScoped<UpdatePostUseCase>();
+            builder.Services.AddScoped<AddCommentUseCase>();
+            builder.Services.AddScoped<GetPostCommentsUseCase>();
+            builder.Services.AddScoped<DeleteCommentUseCase>();
+
 
 
             builder.Services.AddHttpContextAccessor();
