@@ -1,4 +1,5 @@
-﻿using Application.DTOs.PostDTOs;
+﻿using Application.DTOs;
+using Application.DTOs.PostDTOs;
 using Domain.Validation;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,11 @@ namespace Application.Interfaces
 {
     public interface IPost
     {
+        Task<ResultT<IEnumerable<GetCommentDTO>>> GetPostCommentsAsync(long postId);
+        Task<Result> deleteCommentAsync(long commentId);
         public Task<Result> CreatePostAsync(PostDto dto );
         public Task<List<PostAllDetailsDtos>> GetPostAsync();
+        Task<Result> AddCommentToPost(CommentDTO commentDTO);
         public Task<PostAllDetailsDtos> GetPostById(long postId);
         public Task<Result> UpdatePostAsync(long postId , PostDto dto);
         public Task<Result> DeletePostAsync(long postId);
