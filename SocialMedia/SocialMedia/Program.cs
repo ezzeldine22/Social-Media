@@ -6,6 +6,7 @@ using Application.UseCases.Auth;
 using Application.UseCases.Comments;
 using Application.UseCases.Following;
 using Application.UseCases.Post;
+using Application.UseCases.Shares;
 using Application.UseCases.User;
 using Infrastructure.Identity;
 using Infrastructure.Presistence;
@@ -130,6 +131,10 @@ namespace SocialMedia
             builder.Services.AddScoped<AddCommentUseCase>();
             builder.Services.AddScoped<GetPostCommentsUseCase>();
             builder.Services.AddScoped<DeleteCommentUseCase>();
+            builder.Services.AddScoped<SharePostUseCase>();
+            builder.Services.AddScoped<UnSharePostUseCase>();
+            builder.Services.AddScoped<GetAllPostSharesUseCase>();
+
 
 
 
