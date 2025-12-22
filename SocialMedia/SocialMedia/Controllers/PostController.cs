@@ -3,6 +3,7 @@ using Application.DTOs.PostDTOs;
 using Application.Interfaces;
 using Application.UseCases.Comments;
 using Application.UseCases.Post;
+using Application.UseCases.Shares;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq.Expressions;
@@ -22,6 +23,10 @@ namespace API.Controllers
         private readonly AddCommentUseCase _addCommentUseCase;
         private readonly GetPostCommentsUseCase _getPostCommentsUseCase;
         private readonly DeleteCommentUseCase _deleteCommentUseCase;
+        private readonly SharePostUseCase _sharePostUseCase;
+        private readonly UnSharePostUseCase _unSharePostUseCase;
+        private readonly GetAllPostSharesUseCase _getAllPostSharesUseCase;
+
         public PostController(
             CreatePostUseCase createPostUseCase , 
             DeletePostUseCase deletePostUseCase , 
@@ -31,7 +36,10 @@ namespace API.Controllers
             UpdatePostUseCase updatePostUseCase,
             AddCommentUseCase addCommentUseCase,
             GetPostCommentsUseCase getPostCommentsUseCase,
-            DeleteCommentUseCase deleteCommentUseCase)
+            DeleteCommentUseCase deleteCommentUseCase,
+            SharePostUseCase sharePostUseCase,
+            UnSharePostUseCase unSharePostUseCase,
+            GetAllPostSharesUseCase getAllPostSharesUseCase)
         {
             _createPostUseCase = createPostUseCase;
             _deletePostUseCase = deletePostUseCase;
@@ -42,6 +50,9 @@ namespace API.Controllers
             _addCommentUseCase = addCommentUseCase;
             _getPostCommentsUseCase = getPostCommentsUseCase;
             _deleteCommentUseCase = deleteCommentUseCase;
+            _sharePostUseCase = sharePostUseCase;
+            _unSharePostUseCase = unSharePostUseCase;
+            _getAllPostSharesUseCase = getAllPostSharesUseCase;
         }
 
         [HttpPost("CreatePost")]
@@ -127,5 +138,36 @@ namespace API.Controllers
                 return BadRequest(result.Errors);
             return Ok(result.Message);
         }
+
+        [HttpGet("GetAllPostShares")]
+        public async Task<IActionResult> getAllPostShares(long postId)
+        {
+            var result = await _getAllPostSharesUseCase.GetAllPostSharesAsync(postId);
+            if(!result.IsSuccess)
+                return BadRequest(result.Errors);
+            return Ok(result.Data);
+        }
+
+        [HttpPost("SharePost")]
+        public async Task<IActionResult> sharePost(long postId)
+        {
+            var result = await _sharePostUseCase.SharePostAsync(postId);
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.Errors);
+            }
+            return Ok(result.Message);
+        }
+        [HttpPost("UnSharePost")]
+        public async Task<IActionResult> UnsharePost(long postId)
+        {
+            var result = await _unSharePostUseCase.UnSharePostAsync(postId);
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.Errors);
+            }
+            return Ok(result.Message);
+        }
+
     }
 }
