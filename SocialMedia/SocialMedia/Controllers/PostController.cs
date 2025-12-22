@@ -2,6 +2,7 @@
 using Application.DTOs.PostDTOs;
 using Application.Interfaces;
 using Application.UseCases.Comments;
+using Application.UseCases.Likes;
 using Application.UseCases.Post;
 using Application.UseCases.Shares;
 using Microsoft.AspNetCore.Http;
@@ -26,7 +27,8 @@ namespace API.Controllers
         private readonly SharePostUseCase _sharePostUseCase;
         private readonly UnSharePostUseCase _unSharePostUseCase;
         private readonly GetAllPostSharesUseCase _getAllPostSharesUseCase;
-
+        private readonly LikePostUseCase _likePostUseCase;
+        private readonly UnLikePostUseCase _unLikePostUseCase;
         public PostController(
             CreatePostUseCase createPostUseCase , 
             DeletePostUseCase deletePostUseCase , 
@@ -39,7 +41,9 @@ namespace API.Controllers
             DeleteCommentUseCase deleteCommentUseCase,
             SharePostUseCase sharePostUseCase,
             UnSharePostUseCase unSharePostUseCase,
-            GetAllPostSharesUseCase getAllPostSharesUseCase)
+            GetAllPostSharesUseCase getAllPostSharesUseCase,
+            LikePostUseCase likePostUseCase,
+            UnLikePostUseCase unLikePostUseCase)
         {
             _createPostUseCase = createPostUseCase;
             _deletePostUseCase = deletePostUseCase;
@@ -53,6 +57,8 @@ namespace API.Controllers
             _sharePostUseCase = sharePostUseCase;
             _unSharePostUseCase = unSharePostUseCase;
             _getAllPostSharesUseCase = getAllPostSharesUseCase;
+            _likePostUseCase = likePostUseCase;
+            _unLikePostUseCase = unLikePostUseCase;
         }
 
         [HttpPost("CreatePost")]
@@ -168,6 +174,25 @@ namespace API.Controllers
             }
             return Ok(result.Message);
         }
-
+        [HttpPost("LikePost")]
+        public async Task<IActionResult> LikePost(long postId)
+        {
+            var result = await _likePostUseCase.LikePostAsync(postId);
+            if(!result.IsSuccess)
+            {
+                return BadRequest(result.Errors);
+            }
+            return Ok(result.Message);
+        }
+        [HttpPost("UnLikePost")]
+        public async Task<IActionResult> UnLikePost(long postId)
+        {
+            var result = await _unLikePostUseCase.UnLikePostAsync(postId);
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result?.Errors);
+            }
+            return Ok(result.Message);
+        }
     }
 }

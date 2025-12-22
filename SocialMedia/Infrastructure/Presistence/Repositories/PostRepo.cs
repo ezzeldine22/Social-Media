@@ -18,13 +18,20 @@ namespace Infrastructure.Presistence.Repositories
         private readonly IRepository<Post> _repo;
         private readonly IRepository<Share> _shareRepo;
         private readonly IRepository<Comment> _commentsRepo;
+        private readonly IRepository<Like> _likeRepo;
         private readonly IUserContext _userContext;
-        public PostRepo(IRepository<Post> repo, IRepository<Share> shareRepo , IRepository<Comment> commentsRepo , IUserContext userContext)
+        public PostRepo(IRepository<Post> repo , 
+            IRepository<Comment> commentsRepo 
+            , IUserContext userContext
+            , IRepository<Like> likeRepo
+            , IRepository<Share> shareRepo
+            )
         {
             _repo = repo;
             _shareRepo = shareRepo;
             _commentsRepo = commentsRepo;
             _userContext = userContext;
+            _likeRepo = likeRepo;
         }
         public async Task<Result> CreatePostAsync(PostDto dto)
         {
@@ -169,11 +176,11 @@ namespace Infrastructure.Presistence.Repositories
             await _commentsRepo.SaveChanges();
             return Result.success(" Comment deleted successfully ");
         }
-     
+
         public async Task<Result> sharePostAsync(long postId)
         {
             string userId = _userContext.GetUserId();
-            var check = await _repo.FirstOrDefaultAsync(p=>p.Id == postId);
+            var check = await _repo.FirstOrDefaultAsync(p => p.Id == postId);
             if (check == null)
             {
                 return Result.Failure(new List<string> { "No post found with this ID" });
@@ -182,7 +189,7 @@ namespace Infrastructure.Presistence.Repositories
             {
                 CreatedAt = DateTime.Now,
                 PostId = postId,
-                UserId  = userId,
+                UserId = userId,
             };
             await _shareRepo.AddAsync(new_share);
             await _shareRepo.SaveChanges();
@@ -190,11 +197,11 @@ namespace Infrastructure.Presistence.Repositories
         }
         public async Task<ResultT<IEnumerable<GetAllPostSharesDTO>>> getAllPostSharesAsync(long postId)
         {
-            string userId = _userContext.GetUserId() ;
+            string userId = _userContext.GetUserId();
             var shares = await _shareRepo.ReadAll().Where(s => s.PostId == postId)
                 .Select(s => new GetAllPostSharesDTO
                 {
-                    CreatedAt= DateTime.Now,
+                    CreatedAt = DateTime.Now,
                     userName = s.User.Name,
                     userId = userId,
                     userPicture = s.User.Pic,
@@ -208,11 +215,48 @@ namespace Infrastructure.Presistence.Repositories
             s.PostId == postId);
             if (shareToBeDeleted == null)
             {
-                return  Result.Failure(new List<string> { " no share found to be deleted "});
+                return Result.Failure(new List<string> { " no share found to be deleted " });
             }
             await _shareRepo.DeleteAsync(shareToBeDeleted.Id);
             await _shareRepo.SaveChanges();
             return Result.success(" share deleted successfully ");
+        }
+
+
+        // Like Services 
+        public async Task<Result>LikePostAsync(long postId)
+        {
+            string userId = _userContext.GetUserId();
+            var post = _repo.ReadById(postId);
+
+            if(post == null)
+            {
+                return Result.Failure(new List<string> { "not found post " });
+            }
+
+            var newLike = new Like
+            {
+                PostId = postId,
+                UserId = userId,
+                CreatedAt = DateTime.Now
+            };
+
+            await _likeRepo.AddAsync(newLike);
+            await _likeRepo.SaveChanges();
+            return Result.success("success add Like  to post");
+        }
+        
+        public async Task<Result> UnLikePostAsync(long postId)
+        {
+            var userId = _userContext.GetUserId();
+            var rowPost = await _likeRepo.FirstOrDefaultAsync(l => l.PostId == postId && l.UserId == userId);
+            if (rowPost == null)
+            {
+                return Result.Failure(new List<string> { "already unlike post " });
+            }
+            await _likeRepo.DeleteAsync(rowPost.Id);
+            await _likeRepo.SaveChanges();
+            return Result.success("success unLike Post");
         }
     }
 }
