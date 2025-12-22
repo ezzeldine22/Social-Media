@@ -16,11 +16,13 @@ namespace Infrastructure.Presistence.Repositories
     public class PostRepo : IPost
     {
         private readonly IRepository<Post> _repo;
+        private readonly IRepository<Share> _shareRepo;
         private readonly IRepository<Comment> _commentsRepo;
         private readonly IUserContext _userContext;
-        public PostRepo(IRepository<Post> repo , IRepository<Comment> commentsRepo , IUserContext userContext)
+        public PostRepo(IRepository<Post> repo, IRepository<Share> shareRepo , IRepository<Comment> commentsRepo , IUserContext userContext)
         {
             _repo = repo;
+            _shareRepo = shareRepo;
             _commentsRepo = commentsRepo;
             _userContext = userContext;
         }
@@ -166,6 +168,51 @@ namespace Infrastructure.Presistence.Repositories
             await _commentsRepo.DeleteAsync(commentId);
             await _commentsRepo.SaveChanges();
             return Result.success(" Comment deleted successfully ");
+        }
+     
+        public async Task<Result> sharePostAsync(long postId)
+        {
+            string userId = _userContext.GetUserId();
+            var check = await _repo.FirstOrDefaultAsync(p=>p.Id == postId);
+            if (check == null)
+            {
+                return Result.Failure(new List<string> { "No post found with this ID" });
+            }
+            var new_share = new Share
+            {
+                CreatedAt = DateTime.Now,
+                PostId = postId,
+                UserId  = userId,
+            };
+            await _shareRepo.AddAsync(new_share);
+            await _shareRepo.SaveChanges();
+            return Result.success();
+        }
+        public async Task<ResultT<IEnumerable<GetAllPostSharesDTO>>> getAllPostSharesAsync(long postId)
+        {
+            string userId = _userContext.GetUserId() ;
+            var shares = await _shareRepo.ReadAll().Where(s => s.PostId == postId)
+                .Select(s => new GetAllPostSharesDTO
+                {
+                    CreatedAt= DateTime.Now,
+                    userName = s.User.Name,
+                    userId = userId,
+                    userPicture = s.User.Pic,
+                }).ToListAsync();
+            return ResultT<IEnumerable<GetAllPostSharesDTO>>.success(shares);
+        }
+        public async Task<Result> UnsharePostAsync(long postId)
+        {
+            string userID = _userContext.GetUserId();
+            var shareToBeDeleted = await _shareRepo.FirstOrDefaultAsync(s => s.UserId == userID &&
+            s.PostId == postId);
+            if (shareToBeDeleted == null)
+            {
+                return  Result.Failure(new List<string> { " no share found to be deleted "});
+            }
+            await _shareRepo.DeleteAsync(shareToBeDeleted.Id);
+            await _shareRepo.SaveChanges();
+            return Result.success(" share deleted successfully ");
         }
     }
 }
