@@ -11,6 +11,9 @@ namespace Application.Interfaces
 {
     public interface IPost
     {
+        Task<Result> sharePostAsync(long postId);
+        Task<Result> UnsharePostAsync(long postId);
+        Task<ResultT<IEnumerable<GetAllPostSharesDTO>>> getAllPostSharesAsync(long postId);
         Task<ResultT<IEnumerable<GetCommentDTO>>> GetPostCommentsAsync(long postId);
         Task<Result> deleteCommentAsync(long commentId);
         public Task<Result> CreatePostAsync(PostDto dto );
