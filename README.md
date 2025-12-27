@@ -59,9 +59,6 @@ git clone https://github.com/ezzeldine22/Social-Media.git
 cd Social-Media
 ```
 ```bash
-git clone https://github.com/ezzeldine22/Social-Media.git
-```
-```bash
 dotnet restore
 ```
 ```bash
