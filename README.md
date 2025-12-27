@@ -47,7 +47,7 @@ It is designed using **domain-driven design (DDD)** with a clear separation of c
 ### Prerequisites
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)  
-- SQL Server or any preferred database  
+- SQL Server 
 
 ### Installation
 
